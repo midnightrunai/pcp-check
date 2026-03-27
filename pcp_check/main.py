@@ -18,7 +18,7 @@ import urllib.error
 from typing import Optional, List, Tuple, Dict, Any
 
 __version__ = "1.0.0"
-API_BASE = os.environ.get("PCP_CHECK_API", "https://midnightrun.ai/api/pcp")
+API_BASE = os.environ.get("PCP_CHECK_API", "https://midnightrun.ai/pcp-check/api/pcp")
 
 # ANSI colors — disabled if NO_COLOR or not a TTY
 def _supports_color():
