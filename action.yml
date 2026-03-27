@@ -1,0 +1,53 @@
+name: 'PCP Check'
+description: 'Check PyPI dependencies against TeamPCP and other active supply chain attacks'
+author: 'Midnight Run (midnightrun.ai)'
+
+branding:
+  icon: 'shield'
+  color: 'red'
+
+inputs:
+  requirements:
+    description: 'Path(s) to requirements.txt files (space-separated)'
+    required: false
+    default: 'requirements.txt'
+  fail-on-compromised:
+    description: 'Fail the workflow if any compromised packages are found'
+    required: false
+    default: 'true'
+  output-format:
+    description: 'Output format: text or json'
+    required: false
+    default: 'text'
+  python-version:
+    description: 'Python version to use for pip install'
+    required: false
+    default: '3.x'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install pcp-check
+      shell: bash
+      run: pip install pcp-check --quiet
+
+    - name: Run PCP Check
+      shell: bash
+      run: |
+        FAIL_FLAG=""
+        JSON_FLAG=""
+
+        if [ "${{ inputs.fail-on-compromised }}" = "true" ]; then
+          FAIL_FLAG="--fail-on-compromised"
+        fi
+
+        if [ "${{ inputs.output-format }}" = "json" ]; then
+          JSON_FLAG="--json"
+        fi
+
+        pcp-check $JSON_FLAG $FAIL_FLAG ${{ inputs.requirements }}

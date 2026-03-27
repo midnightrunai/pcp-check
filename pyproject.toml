@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "pcp-check"
+version = "1.0.0"
+description = "Real-time CLI to detect TeamPCP and other active supply chain attacks in your Python dependencies"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Midnight Run", email = "hello@midnightrun.ai" }]
+requires-python = ">=3.8"
+keywords = ["security", "supply-chain", "pypi", "vulnerability", "teamPCP"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://midnightrun.ai/pcp-check"
+Repository = "https://github.com/midnightrunai/pcp-check"
+"Bug Tracker" = "https://github.com/midnightrunai/pcp-check/issues"
+
+[project.scripts]
+pcp-check = "pcp_check.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pcp_check*"]
