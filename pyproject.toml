@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.backends.legacy:build"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "pcp-check"
@@ -38,3 +38,4 @@ pcp-check = "pcp_check.main:main"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["pcp_check*"]
+
